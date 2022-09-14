@@ -32,9 +32,10 @@ npm run dev
 
 Prisma is a next-generation ORM that consists of these tools:
 
-Prisma Client: Auto-generated and type-safe query builder for Node.js & TypeScript
-Prisma Migrate: Declarative data modeling & migration system
-Prisma Studio: GUI to view and edit data in your database
+- Prisma Client: Auto-generated and type-safe query builder for Node.js & TypeScript
+- Prisma Migrate: Declarative data modeling & migration system
+- Prisma Studio: GUI to view and edit data in your database
+
 Prisma Client can be used in any Node.js or TypeScript backend application (including serverless applications and microservices). This can be a REST API, a GraphQL API a gRPC API, or anything else that needs a database.
 
 ## "svelte": "^3.44.0"

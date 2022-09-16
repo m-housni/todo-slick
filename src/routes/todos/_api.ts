@@ -7,15 +7,18 @@ import type { Request } from "@sveltejs/kit";
  const prisma = new PrismaClient();
 
 export const api = async (request: Request, data?: Record<string, unknown>) => {
+
+  // initialize body and status
   let body = {};
   let status = 500;
 
+  // check for the different methods
   switch (request.method.toUpperCase()) {
-    case "GET":
+    case "GET": // get all todos
       body = await prisma.todo.findMany();
       status = 200;
       break;
-    case "POST":
+    case "POST": // post new todo
       body = await prisma.todo.create({
         data: {
           created_at: data.created_at as Date,
@@ -25,7 +28,7 @@ export const api = async (request: Request, data?: Record<string, unknown>) => {
       })
       status = 201;
       break;
-    case "DELETE":
+    case "DELETE": // delete a todo
       body = await prisma.todo.delete({
         where: {
           uid: request.params.uid
@@ -34,7 +37,7 @@ export const api = async (request: Request, data?: Record<string, unknown>) => {
       // todos = todos.filter(todo => todo.uid !== request.params.uid)
       status = 200;
       break;
-    case "PATCH":
+    case "PATCH": // update a todo
       body = await prisma.todo.update({
         where: {
           uid: request.params.uid
@@ -51,10 +54,11 @@ export const api = async (request: Request, data?: Record<string, unknown>) => {
       break;
   }
 
+  // if method != GET and header doesn't accept json
   if (request.method.toUpperCase() !== "GET" &&
     request.headers.accept !== "application/json") {
     return {
-      status: 303,
+      status: 303, // suitable for redirection
       headers: {
         location: "/"
       }

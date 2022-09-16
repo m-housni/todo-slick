@@ -20,19 +20,21 @@
 </script>
 
 <script lang="ts">
-  import TodoItem from "$lib/todo-item.svelte";
+  import TodoItem from "$lib/todo-item.svelte"; // todo-item component
 
-  export let todos: Todo[];
+  export let todos: Todo[]; //export todos array
 
-  const title = "Todo";
+  const title = "Todo"; // page title
 
+  // process new todo
   const processNewTodoResult = async (res: Response, form: HTMLFormElement) => {
-    const newTodo = await res.json();
-    todos = [...todos, newTodo];
+    const newTodo = await res.json(); // await for new todo
+    todos = [...todos, newTodo]; // add new todo
 
-    form.reset();
+    form.reset(); // reset form elements 
   };
 
+  // process update todo
   const processUpdatedTodoResult = async (res: Response) => {
     const updatedTodo = await res.json();
     todos = todos.map(t => {

@@ -1,7 +1,8 @@
 
+// RequestHandler gives us auto-completion support both on the request and the response objects
 import type { RequestHandler } from "@sveltejs/kit";
 
-
+// 
 import { api } from "./_api";
 
 export const get: RequestHandler = (request) => {
@@ -18,7 +19,7 @@ teachs TS what is the type of the body
 export const post: RequestHandler<{}, FormData> = (request) => {
   return api(request, {
     created_at: new Date(),
-    text: request.body.get("text"),
+    text: request.body.get('text'),
     done: false
   });
 }

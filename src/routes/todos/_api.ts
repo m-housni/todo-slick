@@ -1,7 +1,10 @@
 import type { Request } from "@sveltejs/kit";
-import PrismaClient from "$lib/prisma";
 
-const prisma = new PrismaClient();
+/**
+ Prisma is a next-generation ORM that makes working with databases easy for application developers and features the following tools: Prisma Client: Auto-generated and type-safe database client for use in your application.
+ */
+ import PrismaClient from "$lib/prisma";
+ const prisma = new PrismaClient();
 
 export const api = async (request: Request, data?: Record<string, unknown>) => {
   let body = {};
